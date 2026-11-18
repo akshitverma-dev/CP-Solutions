@@ -3,21 +3,14 @@ class Solution:
         result = []
         freq = {}
         for i in strs:
-            if i not in freq:
-                freq[i] = {}
-                for k in i:
-                    if k not in freq[i]:
-                        freq[i][k] = 1
-                    else:
-                        freq[i][k] += 1
-        fset = {frozenset(d.items()) for d in freq.values()}
-        # print(fset)
-        for i in fset:
-            target = dict(i)
-            matching_keys = [word for word in strs if freq[word] == target]
-            result.append(matching_keys)
+            srtd = "".join(sorted(i))
+            if srtd not in freq:
+                freq[srtd] = []
+                freq[srtd].append(i)
+            else:
+                freq[srtd].append(i)
 
-        return (result)
+        return(list(freq.values()))
 
 
 
